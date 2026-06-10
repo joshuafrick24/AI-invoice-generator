@@ -1,0 +1,57 @@
+'use client';
+
+import { useState } from 'react';
+
+export default function Home() {
+  const [client, setClient] = useState('');
+  const [work, setWork] = useState('');
+  const [result, setResult] = useState('');
+
+  const generate = () => {
+    setResult(
+      `CLIENT: ${client}\n\n` +
+      `INVOICE JUSTIFICATION:\n` +
+      `This work was completed for ${client}.\n\n` +
+      `SUMMARY:\n${work}\n\n` +
+      `VALUE DELIVERED:\nThis work was executed to support project goals and deliver measurable progress toward requested outcomes.\n\n` +
+      `NOTE:\nThis justification can be attached to your invoice for client clarity.`
+    );
+  };
+
+  return (
+    <main style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Arial' }}>
+      <h1>AI Invoice Justification Generator</h1>
+
+      <p>
+        Turn your work into clear invoice explanations clients understand in seconds.
+      </p>
+
+      <input
+        placeholder="Client Name"
+        value={client}
+        onChange={(e) => setClient(e.target.value)}
+        style={{ width: '100%', padding: 10, marginBottom: 10 }}
+      />
+
+      <textarea
+        placeholder="Describe the work you did..."
+        value={work}
+        onChange={(e) => setWork(e.target.value)}
+        style={{ width: '100%', height: 120, padding: 10 }}
+      />
+
+      <button
+        onClick={generate}
+        style={{ marginTop: 10, padding: 10, width: '100%' }}
+      >
+        Generate Invoice Justification
+      </button>
+
+      {result && (
+        <pre style={{ marginTop: 20, whiteSpace: 'pre-wrap' }}>
+          {result}
+        </pre>
+      )}
+    </main>
+  );
+} 
